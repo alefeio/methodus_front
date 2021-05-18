@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
+import { store } from '~/store';
+
 import { loginRequest } from '~/store/modules/auth/actions';
 
 import logo from '~/assets/logo.png';
@@ -14,6 +16,7 @@ const schema = Yup.object().shape({
 });
 
 export default function Login() {
+  const { logado } = store.getState().auth;
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.auth.loading);
 
@@ -23,14 +26,29 @@ export default function Login() {
 
   return (
     <>
-      <img src={logo} alt="Methodus - Leitura Dinâmica e Memorização" />
-      <Form schema={schema} onSubmit={handleSubmit}>
-        <Input name="email" type="email" placeholder="Seu e-mail" />
-        <Input name="password" type="password" placeholder="Sua senha" />
+      {!logado ? (
+        <div>
+          <img src={logo} alt="Methodus - Leitura Dinâmica e Memorização" />
+          <Form schema={schema} onSubmit={handleSubmit}>
+            <Input name="email" type="email" placeholder="Seu e-mail" />
+            <Input name="password" type="password" placeholder="Seu CPF" />
 
-        <button type="submit">{loading ? 'Carregando...' : 'Acessar'}</button>
-        <Link to="/cadastro">Não tenho conta</Link>
-      </Form>
+            <button type="submit">
+              {loading ? 'Carregando...' : 'Acessar'}
+            </button>
+            {/* <Link to="/cadastro">Não tenho conta</Link> */}
+          </Form>
+        </div>
+      ) : (
+        <div>
+          <img src={logo} alt="Methodus - Leitura Dinâmica e Memorização" />
+          <br />
+          <h2>Você está logado.</h2>
+          <p>
+            <Link to="/dashboard">Clique aqui</Link> para acessar.
+          </p>
+        </div>
+      )}
     </>
   );
 }

@@ -25,9 +25,9 @@ export default function Perfil() {
           {/* <AvatarInput name="img_id" /> */}
 
           <Input name="nome" placeholder="Nome" />
-          <Input name="email" type="email" placeholder="E-mail" />
+          <Input name="email" type="email" placeholder="E-mail" disabled />
 
-          <hr />
+          {/* <hr />
 
           <Input
             type="password"
@@ -39,7 +39,7 @@ export default function Perfil() {
             type="password"
             name="confirmPassword"
             placeholder="Confirmação da senha"
-          />
+          /> */}
 
           <button type="submit">Atualizar perfil</button>
         </Form>

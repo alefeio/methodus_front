@@ -110,7 +110,7 @@ export default function Opcoes02frases(props) {
         }, 300);
       }
 
-      toast.success('Exercício concluído com sucesso!');
+      // toast.success('Exercício concluído com sucesso!');
     } catch (error) {
       setContagem(true);
       setContador(null);

@@ -30,7 +30,7 @@ export const Prod = styled.div`
 
     span {
       font: 3rem Georgia, 'Times New Roman', Times, serif;
-      color: #004b85;
+      color: green;
       margin-bottom: 5rem;
     }
 
@@ -46,12 +46,12 @@ export const Prod = styled.div`
 
     h2 {
       font: 3rem Georgia, 'Times New Roman', Times, serif;
-      color: #004b85;
+      color: green;
     }
 
     h3 {
       margin-left: 1rem;
-      color: #004b85;
+      color: green;
     }
 
     ul {
@@ -132,7 +132,7 @@ export const ListaProdutos = styled.ul`
     margin: ${(props) => props.margin * 6}rem auto;
     padding-top: ${(props) => props.padding / 2}rem;
     font: 3rem Georgia, 'Times New Roman', Times, serif;
-    color: #004b85;
+    color: green;
     font-size: 4rem;
   }
 

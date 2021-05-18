@@ -4,9 +4,10 @@ import { darken } from 'polished';
 export const Prod = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   min-height: 100vh;
+  padding-bottom: 10rem;
 
   @media (max-width: 720px) {
     padding: 10px;
@@ -30,7 +31,7 @@ export const Prod = styled.div`
 
     span {
       font: 3rem Georgia, 'Times New Roman', Times, serif;
-      color: #004b85;
+      color: green;
       margin-bottom: 5rem;
     }
 
@@ -46,17 +47,17 @@ export const Prod = styled.div`
     h1 {
       font: 4rem Georgia, 'Times New Roman', Times, serif;
       text-transform: uppercase;
-      color: #004b85;
+      color: green;
     }
 
     h2 {
       font: 3rem Georgia, 'Times New Roman', Times, serif;
-      color: #004b85;
+      color: green;
     }
 
     h3 {
       margin-left: 1rem;
-      color: #004b85;
+      color: green;
     }
 
     ul {
@@ -144,6 +145,25 @@ export const ListaProdutos = styled.ul`
 
     img {
       margin-left: 1rem;
+    }
+  }
+
+  @media (max-width: 720px) {
+    grid-gap: 0 !important;
+    padding: 0;
+    grid-gap: ${(props) => props.padding / 2}rem !important;
+
+    li {
+      font-size: 2.5rem !important;
+
+      span {
+        font-size: 3rem !important;
+      }
+
+      strong {
+        font-size: 2.5rem !important;
+        font-weight: normal;
+      }
     }
   }
 `;

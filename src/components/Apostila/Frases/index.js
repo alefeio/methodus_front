@@ -73,7 +73,7 @@ export default function Frases(props) {
 
       loadProva();
 
-      toast.success('Exercício concluído com sucesso!');
+      // toast.success('Exercício concluído com sucesso!');
     } catch (error) {
       setContador(null);
     }

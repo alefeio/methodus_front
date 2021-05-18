@@ -105,7 +105,7 @@ export default function Opcoesvariadas(props) {
         }, 300);
       }
 
-      toast.success('Exercício concluído com sucesso!');
+      // toast.success('Exercício concluído com sucesso!');
     } catch (error) {
       setContagem(true);
       setContador(null);
@@ -187,7 +187,7 @@ export default function Opcoesvariadas(props) {
         {!apresentacao && (
           <div>
             {contagem && contador === 1 && (
-              <ListaProdutos padding={opcoes.length}>
+              <ListaProdutos padding={opcoes.length / 2}>
                 <span>{palavra}</span>
                 {opcoes.map((o) => (
                   <li key={o}> </li>

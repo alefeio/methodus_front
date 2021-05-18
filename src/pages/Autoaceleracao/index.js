@@ -101,7 +101,7 @@ export default function Autoaceleracao(props) {
       dispatch(updateProvaRequest(response.data));
       dispatch(updateRespostaRequest(exercicio_id));
 
-      toast.success('Exercício concluído com sucesso!');
+      // toast.success('Exercício concluído com sucesso!');
     } catch (error) {
       console.tron.log('O exercício já foi concluído!');
     }

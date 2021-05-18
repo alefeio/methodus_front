@@ -6,6 +6,10 @@ export const Container = styled.div`
 
 export const ModUl = styled.ul`
   display: flex;
+`;
+
+export const ModUl2 = styled.ul`
+  display: flex;
   flex-direction: column;
 `;
 
@@ -37,12 +41,12 @@ export const Prod = styled.div`
     h1 {
       font: 28px Georgia, 'Times New Roman', Times, serif;
       text-transform: uppercase;
-      color: #004b85;
+      color: green;
     }
 
     h3 {
       margin-left: 1rem;
-      color: #004b85;
+      color: green;
     }
 
     ul {
@@ -59,6 +63,12 @@ export const Prod = styled.div`
         a {
           display: flex;
           align-items: center;
+
+          small {
+            color: green;
+            font-size: 1.1rem !important;
+            margin: 0 0 0 0.5rem;
+          }
 
           img {
             margin-left: 1rem;
@@ -109,7 +119,7 @@ export const Danger = styled.small`
 export const Titulo = styled.h1`
   font: 24px Georgia, 'Times New Roman', Times, serif !important;
   text-transform: none !important;
-  color: #004b85;
+  color: green;
   margin-bottom: 1rem !important;
   margin-top: 3rem !important;
 `;

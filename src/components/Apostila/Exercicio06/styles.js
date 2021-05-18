@@ -30,7 +30,7 @@ export const Prod = styled.div`
 
     span {
       font: 3rem Georgia, 'Times New Roman', Times, serif;
-      color: #004b85;
+      color: green;
       margin-bottom: 5rem;
     }
 
@@ -46,12 +46,12 @@ export const Prod = styled.div`
 
     h2 {
       font: 3rem Georgia, 'Times New Roman', Times, serif;
-      color: #004b85;
+      color: green;
     }
 
     h3 {
       margin-left: 1rem;
-      color: #004b85;
+      color: green;
     }
 
     ul {
@@ -150,6 +150,20 @@ export const ListaProdutos = styled.ul`
       margin-left: 1rem;
     }
   }
+
+  @media (max-width: 720px) {
+    grid-gap: 0 !important;
+    padding: 0 0 !important;
+
+    li {
+      font-size: 2.5rem !important;
+      overflow: hidden;
+
+      strong {
+        font-size: 2.5rem !important;
+      }
+    }
+  }
 `;
 
 export const Palavra = styled.strong`
@@ -169,6 +183,12 @@ export const Palavra = styled.strong`
     margin: 0 !important;
     margin-top: 2rem !important;
     font-size: 4rem !important;
+  }
+
+  @media (max-width: 720px) {
+    font-size: 3rem !important;
+    overflow: hidden;
+    height: 9rem;
   }
 `;
 

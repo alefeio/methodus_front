@@ -80,7 +80,7 @@ export default function Opcoes02(props) {
         history.push(`/apostila/${exercicio + 1}`);
       }, 300);
 
-      toast.success('Exercício concluído com sucesso!');
+      // toast.success('Exercício concluído com sucesso!');
     } catch (error) {
       setContagem(true);
       setContador(null);
@@ -215,7 +215,7 @@ export default function Opcoes02(props) {
               </div>
             )}
 
-            {contador === 0 && (
+            {contador === 0 && exercicio_id === 164 && (
               <button onClick={() => loadContador(1)}>Iniciar</button>
             )}
             {/* {!contagem && concluido && (

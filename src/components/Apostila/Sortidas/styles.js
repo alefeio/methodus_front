@@ -9,17 +9,6 @@ export const Prod = styled.div`
   min-height: 100vh;
   padding-bottom: 10rem;
 
-  @media (max-width: 720px) {
-    padding: 10px;
-    text-align: center;
-
-    div {
-      padding: 0;
-      margin: 0;
-      text-align: center;
-    }
-  }
-
   div {
     display: flex;
     flex-direction: column;
@@ -30,7 +19,7 @@ export const Prod = styled.div`
 
     span {
       font: 3rem Georgia, 'Times New Roman', Times, serif;
-      color: #004b85;
+      color: green;
       margin-bottom: 5rem;
     }
 
@@ -46,12 +35,12 @@ export const Prod = styled.div`
 
     h2 {
       font: 3rem Georgia, 'Times New Roman', Times, serif;
-      color: #004b85;
+      color: green;
     }
 
     h3 {
       margin-left: 1rem;
-      color: #004b85;
+      color: green;
     }
 
     ul {
@@ -101,6 +90,17 @@ export const Prod = styled.div`
   div:first-child {
     padding: 5rem 0 2rem;
   }
+
+  @media (max-width: 720px) {
+    padding: 5px;
+    text-align: center;
+
+    div {
+      padding: 0;
+      margin: 0;
+      text-align: center;
+    }
+  }
 `;
 
 export const ListaProdutos = styled.ul`
@@ -148,6 +148,22 @@ export const ListaProdutos = styled.ul`
 
     img {
       margin-left: 1rem;
+    }
+  }
+
+  @media (max-width: 720px) {
+    grid-gap: 0 !important;
+    padding: 0 0 !important;
+    margin: 0 !important;
+    width: 95%;
+    height: 50vh;
+
+    strong {
+      font-size: 2.5rem !important;
+    }
+
+    span {
+      font-size: 3.5rem !important;
     }
   }
 `;

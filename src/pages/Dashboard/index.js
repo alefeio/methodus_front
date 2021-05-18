@@ -14,7 +14,15 @@ import {
 
 import icoConcluido from '~/assets/ico-concluido.jpg';
 
-import { Container, Prod, ModUl, Titulo, Default, Danger } from './styles';
+import {
+  Container,
+  Prod,
+  ModUl,
+  ModUl2,
+  Titulo,
+  Default,
+  Danger,
+} from './styles';
 
 export default function Dashboard() {
   const [perfil, setPerfil] = useState();
@@ -806,6 +814,8 @@ export default function Dashboard() {
   async function loadProvas() {
     const response = await api.get(`provas`);
 
+    console.log('Prova: ', response.data);
+
     setProva(response.data);
     dispatch(updateProvaRequest(response.data));
 
@@ -928,17 +938,34 @@ export default function Dashboard() {
             <ul>
               <li>
                 <Link to="/apostila/1">
-                  1{ex1 && <img src={icoConcluido} alt="Exercício concluído" />}
+                  1
+                  {ex1 && (
+                    <>
+                      <small>(100%)</small>
+                      <img src={icoConcluido} alt="Exercício concluído" />
+                    </>
+                  )}
                 </Link>
               </li>
               <li>
                 <Link to="/apostila/2">
-                  2{ex2 && <img src={icoConcluido} alt="Exercício concluído" />}
+                  2
+                  {ex2 && (
+                    <>
+                      <small>(100%)</small>
+                      <img src={icoConcluido} alt="Exercício concluído" />
+                    </>
+                  )}
                 </Link>
               </li>
               <li>
                 <Link to="/apostila/332">
                   3
+                  {prova && (
+                    <small>
+                      {prova.monitor03 && `(${prova.monitor03.toFixed(1)}%)`}
+                    </small>
+                  )}
                   {ex332 &&
                     ex3 &&
                     ex4 &&
@@ -981,6 +1008,11 @@ export default function Dashboard() {
               <li>
                 <Link to="/apostila/333">
                   4
+                  {prova && (
+                    <small>
+                      {prova.monitor04 && `(${prova.monitor04.toFixed(1)}%)`}
+                    </small>
+                  )}
                   {ex333 &&
                     ex37 &&
                     ex38 &&
@@ -1013,6 +1045,11 @@ export default function Dashboard() {
                 {/* <Link to="/apostila/60"> */}
                 <Link to="/apostila/334">
                   5
+                  {prova && (
+                    <small>
+                      {prova.monitor05 && `(${prova.monitor05.toFixed(1)}%)`}
+                    </small>
+                  )}
                   {ex60 &&
                     ex61 &&
                     ex62 &&
@@ -1051,6 +1088,11 @@ export default function Dashboard() {
               <li>
                 <Link to="/apostila/335">
                   6
+                  {prova && (
+                    <small>
+                      {prova.monitor06 && `(${prova.monitor06.toFixed(1)}%)`}
+                    </small>
+                  )}
                   {ex91 &&
                     ex92 &&
                     ex93 &&
@@ -1087,6 +1129,11 @@ export default function Dashboard() {
               <li>
                 <Link to="/apostila/336">
                   7
+                  {prova && (
+                    <small>
+                      {prova.monitor07 && `(${prova.monitor07.toFixed(1)}%)`}
+                    </small>
+                  )}
                   {ex120 &&
                     ex121 &&
                     ex122 &&
@@ -1125,6 +1172,11 @@ export default function Dashboard() {
               <li>
                 <Link to="/apostila/151">
                   8
+                  {prova && (
+                    <small>
+                      {prova.monitor08 && `(${prova.monitor08.toFixed(1)}%)`}
+                    </small>
+                  )}
                   {ex151 &&
                     ex152 &&
                     ex153 &&
@@ -1159,6 +1211,11 @@ export default function Dashboard() {
               <li>
                 <Link to="/apostila/337">
                   9
+                  {prova && (
+                    <small>
+                      {prova.monitor09 && `(${prova.monitor09.toFixed(1)}%)`}
+                    </small>
+                  )}
                   {ex337 &&
                     ex338 &&
                     ex339 &&
@@ -1194,6 +1251,12 @@ export default function Dashboard() {
               <li>
                 <Link to="/percepcaovisual/186">
                   10
+                  {prova && (
+                    <small>
+                      {prova.percepcao01 &&
+                        `(${prova.percepcao01.toFixed(1)}%)`}
+                    </small>
+                  )}
                   {ex186 &&
                     ex187 &&
                     ex188 &&
@@ -1222,6 +1285,12 @@ export default function Dashboard() {
               <li>
                 <Link to="/percepcaovisual/208">
                   11
+                  {prova && (
+                    <small>
+                      {prova.percepcao02 &&
+                        `(${prova.percepcao02.toFixed(1)}%)`}
+                    </small>
+                  )}
                   {ex208 &&
                     ex209 &&
                     ex210 &&
@@ -1306,6 +1375,12 @@ export default function Dashboard() {
               <li>
                 <Link to="/percepcaovisual/286">
                   12
+                  {prova && (
+                    <small>
+                      {prova.percepcao03 &&
+                        `(${prova.percepcao03.toFixed(1)}%)`}
+                    </small>
+                  )}
                   {ex286 &&
                     ex287 &&
                     ex288 &&
@@ -1351,7 +1426,10 @@ export default function Dashboard() {
                 <Link to="/percepcaovisual/207">
                   13
                   {ex207 && ex241 && (
-                    <img src={icoConcluido} alt="Exercício concluído" />
+                    <>
+                      <small>(100%)</small>
+                      <img src={icoConcluido} alt="Exercício concluído" />
+                    </>
                   )}
                 </Link>
               </li>
@@ -1471,10 +1549,10 @@ export default function Dashboard() {
             <h1>Memória</h1>
             <h2>Código alfa-numérico</h2>
             <h3>- Repasses</h3>
-            <ModUl>
+            <ModUl2>
               <li>
                 <Link to="/memorizacao/328">
-                  1 - 30
+                  01 - 30
                   {ex328 && (
                     <img src={icoConcluido} alt="Exercício concluído" />
                   )}
@@ -1504,7 +1582,7 @@ export default function Dashboard() {
                   )}
                 </Link>
               </li>
-            </ModUl>
+            </ModUl2>
 
             <Titulo>Dados da Prova</Titulo>
             <ul>

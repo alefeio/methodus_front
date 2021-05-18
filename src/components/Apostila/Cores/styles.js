@@ -30,7 +30,7 @@ export const Prod = styled.div`
 
     span {
       font: 3rem Georgia, 'Times New Roman', Times, serif;
-      color: #004b85;
+      color: green;
       margin-bottom: 5rem;
     }
 
@@ -45,12 +45,12 @@ export const Prod = styled.div`
 
     h2 {
       font: 3rem Georgia, 'Times New Roman', Times, serif;
-      color: #004b85;
+      color: green;
     }
 
     h3 {
       margin-left: 1rem;
-      color: #004b85;
+      color: green;
     }
 
     ul {
@@ -143,6 +143,17 @@ export const ListaProdutos = styled.ul`
       margin-left: 1rem;
     }
   }
+
+  @media (max-width: 720px) {
+    grid-gap: 5rem !important;
+    padding: 0 5rem;
+  }
+`;
+
+export const Circulo = styled.li`
+  background: #${(props) => props.bg};
+  color: #${(props) => props.bg};
+  border-radius: 50%;
 `;
 
 export const Strong = styled.strong`
@@ -182,10 +193,4 @@ export const Baixo = styled.small`
   font: 6rem Georgia, 'Times New Roman', Times, serif;
   color: #41ad49;
   font-weight: bold;
-`;
-
-export const Circulo = styled.li`
-  background: #${(props) => props.bg};
-  color: #${(props) => props.bg};
-  border-radius: 50%;
 `;

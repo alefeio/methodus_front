@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 
 import { logout } from '~/store/modules/auth/actions';
 
+import history from '~/services/history';
+
 import logo from '~/assets/logo.png';
 import iconav from '~/assets/icon-nav2.png';
 import iconavx from '~/assets/icon-nav_x2.png';
@@ -34,11 +36,17 @@ export default function Header() {
     dispatch(logout());
   }
 
+  useEffect(() => {
+    if(!logado) {
+      history.push(`/`);
+    }
+  }, [logado]);
+
   return (
     <Container>
       <Content>
         <div>
-          <Link to="/">
+          <Link to="/dashboard">
             <img src={logo} alt="Methodus - Leitura Dinâmica e Memorização" />
           </Link>
         </div>
@@ -46,7 +54,7 @@ export default function Header() {
         <Nav exibir={checked}>
           <ul>
             <li>
-              <Link to="/" onClick={altChecked}>
+              <Link to="/dashboard" onClick={altChecked}>
                 INÍCIO
               </Link>
             </li>
@@ -55,11 +63,11 @@ export default function Header() {
                 Meu perfil
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/contato" onClick={altChecked}>
                 CONTATO
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link onClick={handleLogout}>Sair</Link>
             </li>

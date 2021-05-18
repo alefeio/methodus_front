@@ -15,6 +15,21 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
 
+  h2 {
+    color: white;
+    margin: 2rem 0 1rem;
+    font-weight: normal;
+  }
+
+  p {
+    color: white;
+
+    a {
+      color: yellow;
+      text-decoration: underline;
+    }
+  }
+
   form {
     display: flex;
     flex-direction: column;

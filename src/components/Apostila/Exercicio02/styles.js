@@ -28,7 +28,7 @@ export const Barra = styled.div`
 
   h3 {
     font-family: Georgia, 'Times New Roman', Times, serif;
-    color: #004b85 !important;
+    color: green !important;
   }
 `;
 
@@ -66,7 +66,7 @@ export const Prod = styled.div`
 
     span {
       font: 3rem Georgia, 'Times New Roman', Times, serif;
-      color: #004b85;
+      color: green;
       font-weight: bold;
     }
 
@@ -88,12 +88,12 @@ export const Prod = styled.div`
 
     h2 {
       font: 3rem Georgia, 'Times New Roman', Times, serif;
-      color: #004b85;
+      color: green;
     }
 
     h3 {
       margin-left: 1rem;
-      color: #004b85;
+      color: green;
     }
 
     ul {

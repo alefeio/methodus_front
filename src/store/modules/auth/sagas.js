@@ -46,7 +46,7 @@ export function* cadastro({ payload }) {
 
     history.push('/');
   } catch (error) {
-    toast.error(`Erro: ${error}`);
+    toast.error(`Este e-mail já possui cadastro!`);
 
     yield put(falha());
   }

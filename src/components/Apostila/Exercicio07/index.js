@@ -56,24 +56,24 @@ export default function Exercicio07(props) {
 
   async function loadResposta() {
     try {
-      await api.post('resposta', {
-        resposta: 0,
-        prova_id: prova.id,
-        exercicio_id,
-      });
+      // await api.post('resposta', {
+      //   resposta: 0,
+      //   prova_id: prova.id,
+      //   exercicio_id,
+      // });
 
-      const response = await api.get(`provas`);
+      // const response = await api.get(`provas`);
 
-      setProva(response.data);
-      dispatch(updateProvaRequest(response.data));
-      dispatch(updateRespostaRequest(exercicio_id));
+      // setProva(response.data);
+      // dispatch(updateProvaRequest(response.data));
+      // dispatch(updateRespostaRequest(exercicio_id));
 
       setContador(null);
       setConcluido(true);
 
       loadProva();
 
-      toast.success('Exercício concluído com sucesso!');
+      // toast.success('Exercício concluído com sucesso!');
     } catch (error) {
       setContador(null);
     }

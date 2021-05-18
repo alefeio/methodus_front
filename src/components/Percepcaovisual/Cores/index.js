@@ -75,7 +75,7 @@ export default function Cores(props) {
 
       // loadProva();
 
-      toast.success('Exercício concluído com sucesso!');
+      // toast.success('Exercício concluído com sucesso!');
     } catch (error) {
       setContagem(true);
       setContador(null);
@@ -124,7 +124,7 @@ export default function Cores(props) {
         setContador(i);
 
         if (!isMountedRef.current) return clearInterval(interval);
-      }, 600);
+      }, 400);
     }
     if (exercicio === 241) {
       const interval = setInterval(() => {
@@ -143,7 +143,7 @@ export default function Cores(props) {
         setContador(i);
 
         if (!isMountedRef.current) return clearInterval(interval);
-      }, 350);
+      }, 250);
     }
   }
 
@@ -223,7 +223,7 @@ export default function Cores(props) {
                     </Link>
                   )}
                   {contagem && !contador && exercicio === 241 && (
-                    <Link onClick={() => loadProximo()} to="/">
+                    <Link onClick={() => loadProximo()} to="/dashboard">
                       &laquo; Voltar para Home
                     </Link>
                   )}

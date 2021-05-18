@@ -102,7 +102,7 @@ export default function Exercicio08(props) {
         history.push(`/apostila/${exercicio + 1}`);
       }, 300);
 
-      toast.success('Exercício concluído com sucesso!');
+      // toast.success('Exercício concluído com sucesso!');
     } catch (error) {
       setContagem(true);
       setContador(null);
@@ -207,7 +207,7 @@ export default function Exercicio08(props) {
               </ListaProdutos>
             )}
             {exercicio_id >= 159 && contagem && contador === 1 && (
-              <ListaProdutos margin="1" padding={contador}>
+              <ListaProdutos margin="1.5" padding={contador}>
                 <p>{palavra}</p>
                 <span>*</span>
                 <li> </li>

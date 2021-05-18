@@ -30,9 +30,13 @@ export default function Cadastro() {
       <img src={logo} alt="Methodus - Leitura Dinâmica e Memorização" />
 
       <Form schema={schema} onSubmit={handleSubmit}>
-        <Input name="nome" placeholder="Seu nome" />
-        <Input name="email" type="email" placeholder="Seu e-mail" />
-        <Input name="cpf" placeholder="Seu CPF" />
+        <Input name="nome" placeholder="Seu nome" type="text" />
+        <Input name="email" placeholder="Seu e-mail" type="email" />
+        <Input
+          name="cpf"
+          placeholder="Seu CPF (apenas números)"
+          type="number"
+        />
         <button type="submit">Criar conta</button>
         <Link to="/">Já tenho conta</Link>
       </Form>

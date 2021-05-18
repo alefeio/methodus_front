@@ -4,20 +4,11 @@ import { darken } from 'polished';
 export const Prod = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   min-height: 100vh;
-
-  @media (max-width: 720px) {
-    padding: 10px;
-    text-align: center;
-
-    div {
-      padding: 0;
-      margin: 0;
-      text-align: center;
-    }
-  }
+  padding-bottom: 10rem;
+  white-space: nowrap;
 
   div {
     display: flex;
@@ -30,7 +21,7 @@ export const Prod = styled.div`
 
     span {
       font: 3rem Georgia, 'Times New Roman', Times, serif;
-      color: #004b85;
+      color: green;
       margin-bottom: 5rem;
     }
 
@@ -46,17 +37,17 @@ export const Prod = styled.div`
     h1 {
       font: 4rem Georgia, 'Times New Roman', Times, serif;
       text-transform: uppercase;
-      color: #004b85;
+      color: green;
     }
 
     h2 {
       font: 3rem Georgia, 'Times New Roman', Times, serif;
-      color: #004b85;
+      color: green;
     }
 
     h3 {
       margin-left: 1rem;
-      color: #004b85;
+      color: green;
     }
 
     ul {
@@ -103,7 +94,15 @@ export const Prod = styled.div`
     }
   }
 
-  div:first-child {
+  @media (max-width: 720px) {
+    padding: 10px;
+    text-align: center;
+
+    div {
+      padding: 0;
+      margin: 0;
+      text-align: center;
+    }
   }
 `;
 
@@ -177,6 +176,10 @@ export const ListaCores = styled.div`
     img {
       margin-left: 1rem;
     }
+  }
+
+  @media (max-width: 720px) {
+    padding: 1rem 3rem !important;
   }
 `;
 

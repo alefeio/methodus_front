@@ -30,7 +30,7 @@ export const Prod = styled.div`
 
     span {
       font: 3rem Georgia, 'Times New Roman', Times, serif;
-      color: #004b85;
+      color: green;
       margin-bottom: 5rem;
     }
 
@@ -46,12 +46,12 @@ export const Prod = styled.div`
 
     h2 {
       font: 3rem Georgia, 'Times New Roman', Times, serif;
-      color: #004b85;
+      color: green;
     }
 
     h3 {
       margin-left: 1rem;
-      color: #004b85;
+      color: green;
     }
 
     ul {
@@ -120,7 +120,6 @@ export const ListaProdutos = styled.ul`
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    flex-wrap: nowrap;
 
     button {
       background: #004b85;
@@ -147,6 +146,25 @@ export const ListaProdutos = styled.ul`
 
     img {
       margin-left: 1rem;
+    }
+  }
+
+  @media (max-width: 720px) {
+    grid-gap: 0 !important;
+    padding: 0 0 !important;
+    margin: 0 !important;
+
+    li {
+      font-size: 2.5rem !important;
+      overflow: hidden;
+
+      strong {
+        font-size: 2.5rem !important;
+      }
+
+      span {
+        font-size: 2.7rem !important;
+      }
     }
   }
 `;

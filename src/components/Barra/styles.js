@@ -36,6 +36,6 @@ export const Bar = styled.div`
 
   h3 {
     font-family: Georgia, 'Times New Roman', Times, serif;
-    color: #004b85 !important;
+    color: green !important;
   }
 `;

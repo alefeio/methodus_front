@@ -100,7 +100,7 @@ export default function Exercicio06(props) {
         }, 300);
       }
 
-      toast.success('Exercício concluído com sucesso!');
+      // toast.success('Exercício concluído com sucesso!');
     } catch (error) {
       setContador(null);
 

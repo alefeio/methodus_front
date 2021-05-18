@@ -206,7 +206,7 @@ export default function Opcoes02(props) {
         history.push(`/percepcaovisual/${exercicio + 1}`);
       }, 300);
 
-      toast.success('Exercício concluído com sucesso!');
+      // toast.success('Exercício concluído com sucesso!');
     } catch (error) {
       setContagem(true);
       setContador(null);

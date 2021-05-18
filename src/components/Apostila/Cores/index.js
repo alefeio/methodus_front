@@ -89,7 +89,7 @@ export default function Opcoes02(props) {
 
       loadProva();
 
-      toast.success('Exercício concluído com sucesso!');
+      // toast.success('Exercício concluído com sucesso!');
     } catch (error) {
       setContagem(true);
       setContador(null);

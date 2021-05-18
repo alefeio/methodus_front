@@ -8,12 +8,12 @@ export default function Barra(props) {
     <Bar>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/dashboard">Home</Link>
         </li>
         {props.categoria && <li>/</li>}
         {props.categoria && (
           <li>
-            <Link to="/">{props.categoria}</Link>
+            <Link to="/dashboard">{props.categoria}</Link>
           </li>
         )}
         {props.modulo && <li>/</li>}

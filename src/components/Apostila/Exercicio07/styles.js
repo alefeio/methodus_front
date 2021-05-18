@@ -8,17 +8,7 @@ export const Prod = styled.div`
   align-items: center;
   min-height: 100vh;
   padding-bottom: 10rem;
-
-  @media (max-width: 720px) {
-    padding: 10px;
-    text-align: center;
-
-    div {
-      padding: 0;
-      margin: 0;
-      text-align: center;
-    }
-  }
+  overflow: hidden;
 
   div {
     display: flex;
@@ -30,7 +20,7 @@ export const Prod = styled.div`
 
     span {
       font: 3rem Georgia, 'Times New Roman', Times, serif;
-      color: #004b85;
+      color: green;
       margin-bottom: 5rem;
     }
 
@@ -46,12 +36,12 @@ export const Prod = styled.div`
 
     h2 {
       font: 3rem Georgia, 'Times New Roman', Times, serif;
-      color: #004b85;
+      color: green;
     }
 
     h3 {
       margin-left: 1rem;
-      color: #004b85;
+      color: green;
     }
 
     ul {
@@ -101,6 +91,17 @@ export const Prod = styled.div`
   div:first-child {
     padding: 5rem 0 2rem;
   }
+
+  @media (max-width: 720px) {
+    padding: 5px;
+    text-align: center;
+
+    div {
+      padding: 0;
+      margin: 0;
+      text-align: center;
+    }
+  }
 `;
 
 export const ListaProdutos = styled.ul`
@@ -121,7 +122,6 @@ export const ListaProdutos = styled.ul`
     align-items: center;
     justify-content: flex-start;
     height: 12rem;
-    flex-wrap: nowrap;
 
     button {
       background: #004b85;
@@ -147,6 +147,20 @@ export const ListaProdutos = styled.ul`
 
     img {
       margin-left: 1rem;
+    }
+  }
+
+  @media (max-width: 720px) {
+    grid-gap: 0 !important;
+    padding: 0 0 !important;
+
+    li {
+      font-size: 2.5rem !important;
+      overflow: hidden;
+
+      strong {
+        font-size: 2.5rem !important;
+      }
     }
   }
 `;

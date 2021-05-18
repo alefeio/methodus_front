@@ -8,6 +8,7 @@ export const Prod = styled.div`
   align-items: center;
   min-height: 100vh;
   padding-bottom: 10rem;
+    white-space: nowrap;
 
   @media (max-width: 720px) {
     padding: 10px;
@@ -30,7 +31,7 @@ export const Prod = styled.div`
 
     span {
       font: 3rem Georgia, 'Times New Roman', Times, serif;
-      color: #004b85;
+      color: green;
       margin-bottom: 5rem;
     }
 
@@ -46,12 +47,12 @@ export const Prod = styled.div`
 
     h2 {
       font: 3rem Georgia, 'Times New Roman', Times, serif;
-      color: #004b85;
+      color: green;
     }
 
     h3 {
       margin-left: 1rem;
-      color: #004b85;
+      color: green;
     }
 
     ul {
@@ -110,6 +111,7 @@ export const ListaProdutos = styled.ul`
   padding: 50px 0;
   position: relative;
   width: 100%;
+    white-space: nowrap;
 
   strong {
     width: 100%;
@@ -121,6 +123,7 @@ export const ListaProdutos = styled.ul`
     padding-top: ${(props) => props.padding / 2}rem;
     font: 3rem Georgia, 'Times New Roman', Times, serif;
     font-weight: normal;
+    white-space: nowrap;
   }
 
   p {
@@ -132,7 +135,8 @@ export const ListaProdutos = styled.ul`
     margin: ${(props) => props.margin * 6}rem auto;
     padding-top: ${(props) => props.padding / 2}rem;
     font: 3.5rem Georgia, 'Times New Roman', Times, serif;
-    color: #004b85;
+    color: green;
+    white-space: nowrap;
   }
 
   span {
@@ -149,7 +153,7 @@ export const ListaProdutos = styled.ul`
   li {
     display: flex;
     align-items: center;
-    flex-wrap: nowrap;
+    white-space: nowrap;
 
     button {
       background: #004b85;
@@ -171,6 +175,16 @@ export const ListaProdutos = styled.ul`
 
     img {
       margin-left: 1rem;
+    }
+  }
+
+  @media (max-width: 720px) {
+    p {
+      font-size: 2.7rem !important;
+    }
+
+    strong {
+      font-size: 2.5rem !important;
     }
   }
 `;

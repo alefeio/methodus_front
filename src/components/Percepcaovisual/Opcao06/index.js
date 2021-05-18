@@ -51,7 +51,7 @@ export default function Opcoes04(props) {
       }
 
       if (!isMountedRef.current) return clearInterval(interval);
-    }, 400);
+    }, 430);
   }
 
   async function loadProva() {
@@ -101,7 +101,7 @@ export default function Opcoes04(props) {
         else history.push(`/percepcaovisual/${exercicio + 1}`);
       }, 300);
 
-      toast.success('Exercício concluído com sucesso!');
+      // toast.success('Exercício concluído com sucesso!');
     } catch (error) {
       setContagem(true);
       setContador(null);
