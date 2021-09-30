@@ -13,6 +13,8 @@ import Percepcaovisual from '../pages/percepcaovisual';
 import Apostila from '../pages/Apostila';
 import Autoaceleracao from '../pages/Autoaceleracao';
 import Memorizacao from '../pages/Memorizacao';
+import Admin from '../pages/Admin';
+import Alunos from '../pages/Admin/Alunos';
 
 import Contato from '../pages/Contato';
 
@@ -32,6 +34,8 @@ export default function Routes() {
       <Route path="/autoaceleracao/:id" component={Autoaceleracao} isPrivate />
       <Route path="/memorizacao/:id" component={Memorizacao} isPrivate />
       <Route path="/perfil" component={Perfil} isPrivate />
+      <Route path="/admin" exact component={Admin} isPrivate />
+      <Route path="/admin/alunos" component={Alunos} isPrivate />
       <Route path="/contato" component={Contato} />
     </Switch>
   );

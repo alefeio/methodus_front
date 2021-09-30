@@ -18,7 +18,9 @@ export default function Header() {
   const dispatch = useDispatch();
 
   const [checked, setChecked] = useState(false);
-  // const [perfil, setPerfil] = useState();
+  const [perfil, setPerfil] = useState();
+
+  const perf = useSelector((state) => state.usuario);
 
   const { logado } = store.getState().auth;
 
@@ -35,6 +37,14 @@ export default function Header() {
   function handleLogout() {
     dispatch(logout());
   }
+
+  useEffect(() => {
+    async function loadPerfil() {
+      setPerfil(perf.perfil);
+    }
+
+    loadPerfil();
+  }, []);
 
   useEffect(() => {
     if(!logado) {
@@ -58,6 +68,13 @@ export default function Header() {
                 INÍCIO
               </Link>
             </li>
+            {perfil && perfil.admin && (
+              <li>
+                <Link to="/admin" onClick={altChecked}>
+                  ADMIN
+                </Link>
+              </li>
+            )}
             <li>
               <Link to="/perfil" onClick={altChecked}>
                 Meu perfil
