@@ -15,6 +15,10 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
 
+  img {
+    width: 100%;
+  }
+
   h2 {
     color: white;
     margin: 2rem 0 1rem;
@@ -22,7 +26,8 @@ export const Content = styled.div`
   }
 
   p {
-    color: white;
+    color: 999;
+    font-size: 1.8rem;
 
     a {
       color: yellow;
@@ -36,16 +41,16 @@ export const Content = styled.div`
     margin-top: 30px;
 
     input {
-      background: rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.9);
       border: 0;
       border-radius: 4px;
       height: 44px;
       padding: 0 15px;
-      color: #fff;
+      color: black;
       margin: 0 0 10px;
 
       &::placeholder {
-        color: rgba(255, 255, 255, 0.7);
+        color: rgba(#333, 0.7);
       }
     }
 
@@ -81,6 +86,14 @@ export const Content = styled.div`
       &:hover {
         opacity: 1;
       }
+    }
+
+    img {
+      width: 20px;
+      margin-left: auto;
+      margin-top: -40px;
+      margin-right: 10px;
+      margin-bottom: 25px;
     }
   }
 `;

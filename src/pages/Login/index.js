@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
@@ -10,18 +10,40 @@ import { loginRequest } from '~/store/modules/auth/actions';
 
 import logo from '~/assets/logo.png';
 
+import olhoAberto from "~/assets/ico-olhoaberto.png";
+import olhoFechado from "~/assets/ico-olhofechado.png";
+
 const schema = Yup.object().shape({
   email: Yup.string().email('E-mail inválido!').required('Campo obrigatório!'),
   password: Yup.string().required('Campo obrigatório!'),
 });
 
 export default function Login() {
+  const [olho1, setOlho1] = useState({
+    src: olhoFechado,
+    type: "password",
+  });
+
   const { logado } = store.getState().auth;
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.auth.loading);
 
   function handleSubmit({ email, password }) {
     dispatch(loginRequest(email, password));
+  }
+
+  async function handleSenha() {
+    if (olho1.src === olhoAberto) {
+      setOlho1({
+        src: olhoFechado,
+        type: "password",
+      });
+    } else {
+      setOlho1({
+        src: olhoAberto,
+        type: "text",
+      });
+    }
   }
 
   return (
@@ -31,7 +53,8 @@ export default function Login() {
           <img src={logo} alt="Methodus - Leitura Dinâmica e Memorização" />
           <Form schema={schema} onSubmit={handleSubmit}>
             <Input name="email" type="email" placeholder="Seu e-mail" />
-            <Input name="password" type="password" placeholder="Seu CPF" />
+            <Input name="password" type={olho1.type} placeholder="Seu CPF" />
+            <img src={olho1.src} alt="" onClick={() => handleSenha()} />
 
             <button type="submit">
               {loading ? 'Carregando...' : 'Acessar'}
