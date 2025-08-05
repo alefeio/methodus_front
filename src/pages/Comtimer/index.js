@@ -1,70 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import ReactAudioPlayer from 'react-audio-player';
 
 import Barra from '~/components/Barra';
-
 import {
   updateProvaRequest,
   updateRespostaRequest,
 } from '~/store/modules/usuario/actions';
 
 import { Container, Prod, Strong } from './styles';
-
 import api from '~/services/api';
 
 import beep from '~/assets/beep.mp3';
-
-import c45 from '~/assets/cronometro/45.jpg';
-import c44 from '~/assets/cronometro/44.jpg';
-import c43 from '~/assets/cronometro/43.jpg';
-import c42 from '~/assets/cronometro/42.jpg';
-import c41 from '~/assets/cronometro/41.jpg';
-import c40 from '~/assets/cronometro/40.jpg';
-import c39 from '~/assets/cronometro/39.jpg';
-import c38 from '~/assets/cronometro/38.jpg';
-import c37 from '~/assets/cronometro/37.jpg';
-import c36 from '~/assets/cronometro/36.jpg';
-import c35 from '~/assets/cronometro/35.jpg';
-import c34 from '~/assets/cronometro/34.jpg';
-import c33 from '~/assets/cronometro/33.jpg';
-import c32 from '~/assets/cronometro/32.jpg';
-import c31 from '~/assets/cronometro/31.jpg';
-import c30 from '~/assets/cronometro/30.jpg';
-import c29 from '~/assets/cronometro/29.jpg';
-import c28 from '~/assets/cronometro/28.jpg';
-import c27 from '~/assets/cronometro/27.jpg';
-import c26 from '~/assets/cronometro/26.jpg';
-import c25 from '~/assets/cronometro/25.jpg';
-import c24 from '~/assets/cronometro/24.jpg';
-import c23 from '~/assets/cronometro/23.jpg';
-import c22 from '~/assets/cronometro/22.jpg';
-import c21 from '~/assets/cronometro/21.jpg';
-import c20 from '~/assets/cronometro/20.jpg';
-import c19 from '~/assets/cronometro/19.jpg';
-import c18 from '~/assets/cronometro/18.jpg';
-import c17 from '~/assets/cronometro/17.jpg';
-import c16 from '~/assets/cronometro/16.jpg';
-import c15 from '~/assets/cronometro/15.jpg';
-import c14 from '~/assets/cronometro/14.jpg';
-import c13 from '~/assets/cronometro/13.jpg';
-import c12 from '~/assets/cronometro/12.jpg';
-import c11 from '~/assets/cronometro/11.jpg';
-import c10 from '~/assets/cronometro/10.jpg';
-import c9 from '~/assets/cronometro/9.jpg';
-import c8 from '~/assets/cronometro/8.jpg';
-import c7 from '~/assets/cronometro/7.jpg';
-import c6 from '~/assets/cronometro/6.jpg';
-import c5 from '~/assets/cronometro/5.jpg';
-import c4 from '~/assets/cronometro/4.jpg';
-import c3 from '~/assets/cronometro/3.jpg';
-import c2 from '~/assets/cronometro/2.jpg';
-import c1 from '~/assets/cronometro/1.jpg';
-
-import icoConcluido from '~/assets/ico-concluido.jpg';
 import reiniciar from '~/assets/reiniciar.png';
+import icoConcluido from '~/assets/ico-concluido.jpg';
+
+import * as cronos from '~/assets/cronometro';
 
 export default function Comtimer(props) {
   const [exercicio, setExercicio] = useState();
@@ -74,18 +26,20 @@ export default function Comtimer(props) {
   const [iniciado, setIniciado] = useState(false);
   const [prova, setProva] = useState();
   const [concluido, setConcluido] = useState(false);
-  const [respostas, setRespostas] = useState();
-  const [audio, setAudio] = useState(false);
 
   const isMountedRef = useRef(null);
+  const beepAudio = useRef(null);
 
   const id = parseInt(props.match.params.id);
-
   const exercicio_id = id;
 
   const dispatch = useDispatch();
-
   const resp = useSelector((state) => state.usuario);
+
+  useEffect(() => {
+    beepAudio.current = new Audio(beep);
+    beepAudio.current.load();
+  }, []);
 
   async function loadResposta() {
     try {
@@ -96,14 +50,35 @@ export default function Comtimer(props) {
       });
 
       const response = await api.get(`provas`);
-
       setProva(response.data);
       dispatch(updateProvaRequest(response.data));
       dispatch(updateRespostaRequest(exercicio_id));
-
-      // toast.success('Exercício concluído com sucesso!');
     } catch (error) {
       console.tron.log('O exercício já foi concluído!');
+    }
+  }
+
+  function loadNumeros(min, max) {
+    setMinimo(min);
+    setMaximo(max);
+  }
+
+  function loadNumCont() {
+    const valores = {
+      178: [5, 8],
+      179: [5, 12],
+      180: [10, 15],
+      181: [10, 15],
+      182: [10, 15],
+      183: [10, 12],
+      184: [8, 12],
+      185: [3, 5],
+    };
+
+    if (valores[id]) {
+      const [min, max] = valores[id];
+      loadNumeros(min, max);
+      setContador(max);
     }
   }
 
@@ -112,48 +87,63 @@ export default function Comtimer(props) {
     let max = maxi;
 
     let inicioContador = 0;
-    let fimContador = 0;
-    if (exercicio_id === 178 || exercicio_id === 179) fimContador = 5;
-    if (
-      exercicio_id === 180 ||
-      exercicio_id === 181 ||
-      exercicio_id === 182 ||
-      exercicio_id === 183
-    )
-      fimContador = 10;
-    if (exercicio_id === 184) fimContador = 8;
-    if (exercicio_id === 185) fimContador = 5;
+    let fimContador = {
+      178: 5,
+      179: 5,
+      180: 10,
+      181: 10,
+      182: 10,
+      183: 10,
+      184: 8,
+      185: 5,
+    }[exercicio_id] || 0;
+
+    // Mostra o número inicial imediatamente
+    setContador(i);
 
     const interval = setInterval(() => {
-      if (i === 0) setAudio(true);
-      else setAudio(false);
+      if (!isMountedRef.current) return clearInterval(interval);
+
+      i -= 1;
+
+      if (i === 0 && beepAudio.current) {
+        beepAudio.current.play().catch((err) =>
+          console.log('Erro ao tocar áudio:', err)
+        );
+      }
+
       if (i < 0) {
         if (max < mini) {
           if (isMountedRef.current) loadResposta();
-          setConcluido(true);
           isMountedRef.current = false;
-          setIniciado(false);
-          setContador(mini);
+          loadNumCont();
+          iniciar();
           return clearInterval(interval);
         }
 
         i = max;
         setContador(i);
-
         inicioContador += 1;
         if (inicioContador === fimContador) {
           fimContador += 1;
           max -= 1;
           inicioContador = 0;
         }
+      } else {
+        setContador(i);
       }
-      if (!isMountedRef.current) return clearInterval(interval);
-      setContador(i);
-      i -= 1;
     }, 1000);
   }
 
   function iniciar() {
+    // Desbloqueia o áudio no primeiro clique
+    if (beepAudio.current) {
+      beepAudio.current.play().then(() => {
+        beepAudio.current.pause();
+        beepAudio.current.currentTime = 0;
+      });
+    }
+
     setIniciado(true);
     isMountedRef.current = true;
     loadContador(maximo, minimo);
@@ -165,22 +155,10 @@ export default function Comtimer(props) {
   }
 
   useEffect(() => {
-    async function loadRespostas() {
-      setRespostas(resp.resposta);
-    }
-
-    loadRespostas();
-  }, [resp.resposta]);
-
-  useEffect(() => {
-    isMountedRef.current = true;
-
     async function loadProva() {
       const response = await api.get(`provas`);
-
       setProva(response.data);
       dispatch(updateProvaRequest(response.data));
-
       const prova_id = response.data.id;
 
       const respostaExiste = await api.get(
@@ -189,62 +167,68 @@ export default function Comtimer(props) {
 
       if (respostaExiste.data) {
         setConcluido(true);
-
         const re = resp.resposta.filter((r) => r === exercicio_id);
-
         if (!re) dispatch(updateRespostaRequest(exercicio_id));
       }
     }
 
-    function loadExercicio() {
-      setExercicio(id);
-    }
-
-    function loadNumeros(min, max) {
-      setMinimo(min);
-      setMaximo(max);
-    }
-
-    if (isMountedRef.current) loadProva();
-    loadExercicio();
-
-    if (id === 178) {
-      loadNumeros(5, 8);
-      setContador(8);
-    }
-    if (id === 179) {
-      loadNumeros(5, 12);
-      setContador(12);
-    }
-    if (id === 180) {
-      loadNumeros(10, 15);
-      setContador(15);
-    }
-    if (id === 181) {
-      loadNumeros(10, 15);
-      setContador(15);
-    }
-    if (id === 182) {
-      loadNumeros(10, 15);
-      setContador(15);
-    }
-    if (id === 183) {
-      loadNumeros(10, 12);
-      setContador(12);
-    }
-    if (id === 184) {
-      loadNumeros(8, 12);
-      setContador(12);
-    }
-    if (id === 185) {
-      loadNumeros(3, 5);
-      setContador(5);
-    }
+    setExercicio(id);
+    isMountedRef.current = true;
+    loadProva();
+    loadNumCont();
 
     return () => {
       isMountedRef.current = false;
     };
   }, []);
+
+  const imagens = {
+    1: cronos.c1,
+    2: cronos.c2,
+    3: cronos.c3,
+    4: cronos.c4,
+    5: cronos.c5,
+    6: cronos.c6,
+    7: cronos.c7,
+    8: cronos.c8,
+    9: cronos.c9,
+    10: cronos.c10,
+    11: cronos.c11,
+    12: cronos.c12,
+    13: cronos.c13,
+    14: cronos.c14,
+    15: cronos.c15,
+    16: cronos.c16,
+    17: cronos.c17,
+    18: cronos.c18,
+    19: cronos.c19,
+    20: cronos.c20,
+    21: cronos.c21,
+    22: cronos.c22,
+    23: cronos.c23,
+    24: cronos.c24,
+    25: cronos.c25,
+    26: cronos.c26,
+    27: cronos.c27,
+    28: cronos.c28,
+    29: cronos.c29,
+    30: cronos.c30,
+    31: cronos.c31,
+    32: cronos.c32,
+    33: cronos.c33,
+    34: cronos.c34,
+    35: cronos.c35,
+    36: cronos.c36,
+    37: cronos.c37,
+    38: cronos.c38,
+    39: cronos.c39,
+    40: cronos.c40,
+    41: cronos.c41,
+    42: cronos.c42,
+    43: cronos.c43,
+    44: cronos.c44,
+    45: cronos.c45,
+  };
 
   return (
     <Container>
@@ -259,56 +243,13 @@ export default function Comtimer(props) {
         <div>
           <h1>Com timer: {`${maximo}" - ${minimo}"`}</h1>
           <strong>
-            {contador === 1 && <img src={c1} alt="Cronômetro" />}
-            {contador === 2 && <img src={c2} alt="Cronômetro" />}
-            {contador === 3 && <img src={c3} alt="Cronômetro" />}
-            {contador === 4 && <img src={c4} alt="Cronômetro" />}
-            {contador === 5 && <img src={c5} alt="Cronômetro" />}
-            {contador === 6 && <img src={c6} alt="Cronômetro" />}
-            {contador === 7 && <img src={c7} alt="Cronômetro" />}
-            {contador === 8 && <img src={c8} alt="Cronômetro" />}
-            {contador === 9 && <img src={c9} alt="Cronômetro" />}
-            {contador === 10 && <img src={c10} alt="Cronômetro" />}
-            {contador === 11 && <img src={c11} alt="Cronômetro" />}
-            {contador === 12 && <img src={c12} alt="Cronômetro" />}
-            {contador === 13 && <img src={c13} alt="Cronômetro" />}
-            {contador === 14 && <img src={c14} alt="Cronômetro" />}
-            {contador === 15 && <img src={c15} alt="Cronômetro" />}
-            {contador === 16 && <img src={c16} alt="Cronômetro" />}
-            {contador === 17 && <img src={c17} alt="Cronômetro" />}
-            {contador === 18 && <img src={c18} alt="Cronômetro" />}
-            {contador === 19 && <img src={c19} alt="Cronômetro" />}
-            {contador === 20 && <img src={c20} alt="Cronômetro" />}
-            {contador === 21 && <img src={c21} alt="Cronômetro" />}
-            {contador === 22 && <img src={c22} alt="Cronômetro" />}
-            {contador === 23 && <img src={c23} alt="Cronômetro" />}
-            {contador === 24 && <img src={c24} alt="Cronômetro" />}
-            {contador === 25 && <img src={c25} alt="Cronômetro" />}
-            {contador === 26 && <img src={c26} alt="Cronômetro" />}
-            {contador === 27 && <img src={c27} alt="Cronômetro" />}
-            {contador === 28 && <img src={c28} alt="Cronômetro" />}
-            {contador === 29 && <img src={c29} alt="Cronômetro" />}
-            {contador === 30 && <img src={c30} alt="Cronômetro" />}
-            {contador === 31 && <img src={c31} alt="Cronômetro" />}
-            {contador === 32 && <img src={c32} alt="Cronômetro" />}
-            {contador === 33 && <img src={c33} alt="Cronômetro" />}
-            {contador === 34 && <img src={c34} alt="Cronômetro" />}
-            {contador === 35 && <img src={c35} alt="Cronômetro" />}
-            {contador === 36 && <img src={c36} alt="Cronômetro" />}
-            {contador === 37 && <img src={c37} alt="Cronômetro" />}
-            {contador === 38 && <img src={c38} alt="Cronômetro" />}
-            {contador === 39 && <img src={c39} alt="Cronômetro" />}
-            {contador === 40 && <img src={c40} alt="Cronômetro" />}
-            {contador === 41 && <img src={c41} alt="Cronômetro" />}
-            {contador === 42 && <img src={c42} alt="Cronômetro" />}
-            {contador === 43 && <img src={c43} alt="Cronômetro" />}
-            {contador === 44 && <img src={c44} alt="Cronômetro" />}
-            {contador === 45 && <img src={c45} alt="Cronômetro" />}
+            {imagens[contador] && (
+              <img src={imagens[contador]} alt="Cronômetro" />
+            )}
           </strong>
         </div>
         <div>
           <span>{contador}</span>
-          {audio && <ReactAudioPlayer src={beep} autoPlay />}
           {!iniciado && isMountedRef.current && (
             <button onClick={() => iniciar()}>Iniciar</button>
           )}
@@ -323,7 +264,6 @@ export default function Comtimer(props) {
               Concluído <img src={icoConcluido} alt="Exercício concluído" />
             </Strong>
           )}
-
           {!concluido && (
             <small>
               *A nota será contabilizada após a conclusão do exercício.
